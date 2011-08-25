@@ -361,6 +361,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FlipView_Prefix.pch;
 				INFOPLIST_FILE = "FlipView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = FlipView;
 			};
 			name = Debug;
@@ -373,6 +374,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = FlipView_Prefix.pch;
 				INFOPLIST_FILE = "FlipView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = FlipView;
 				VALIDATE_PRODUCT = YES;
 			};

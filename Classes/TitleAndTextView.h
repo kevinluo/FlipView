@@ -39,11 +39,15 @@
 	UILabel* userNameLabel;
 	UILabel* timeStampLabel;
 	UILabel* messageLabel;
+    
+    //add by kevin
+    UIView *touchBackView;
 }
 
 - (id) initWithMessageModel:(MessageModel*)messagemodel;
 - (void) initializeFields;
 	
 @property (nonatomic,retain) MessageModel* messageModel;
+@property (nonatomic,retain) UIView *touchBackView;
 
 @end

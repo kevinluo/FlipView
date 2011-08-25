@@ -35,6 +35,7 @@
 @implementation TitleAndTextView
 
 @synthesize messageModel;
+@synthesize touchBackView;
 
 - (id) initWithMessageModel:(MessageModel*)messagemodel{
 	if (self = [super init]) {
@@ -49,6 +50,7 @@
 	return self;
 }
 
+#define Padding 5
 - (void)reAdjustLayout{
 
 	[contentView setFrame:CGRectMake(1, 1, self.frame.size.width-2, self.frame.size.height - 2)];
@@ -70,7 +72,10 @@
 //		float widthOffset = (messageLabel.frame.size.width - textSize.width)/ 2;
 //		float heightOffset = (messageLabel.frame.size.height - textSize.height)/2;
 		//[messageLabel setContentInset:UIEdgeInsetsMake(heightOffset, widthOffset, heightOffset, widthOffset)];
-
+    
+    //add by kevin
+    self.touchBackView.frame = CGRectMake(Padding, Padding, self.bounds.size.width-Padding*2, self.bounds.size.height-Padding*2);
+    //add end
 
 }
 
@@ -78,7 +83,14 @@
 	contentView = [[UIView alloc] init];
 	[contentView setBackgroundColor:[UIColor whiteColor]];
 	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
+    
+    //add by kevin
+    self.touchBackView = [[[UIView alloc] init] autorelease];
+    self.touchBackView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.5];
+    self.touchBackView.hidden = YES;
+    [contentView addSubview:self.touchBackView];
+    //add end
+    
 	userImageView = [[UIImageView alloc] init];
 	userImageView.image = [UIImage imageNamed:messageModel.userImage];
 	[userImageView setFrame:CGRectMake(10, 10, 50, 50)];
@@ -105,7 +117,7 @@
 	messageLabel.highlightedTextColor = RGBCOLOR(33,33,33);
 	messageLabel.contentMode = UIViewContentModeCenter;
 	messageLabel.textAlignment = UITextAlignmentLeft;
-	[messageLabel setBackgroundColor:[UIColor whiteColor]];
+	[messageLabel setBackgroundColor:[UIColor clearColor]];
 	messageLabel.numberOfLines = 0;
 	[contentView addSubview:messageLabel];
 	
@@ -134,5 +146,17 @@
 	[super dealloc];
 }
 
+#pragma mark - touch 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    self.touchBackView.hidden = NO;
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    self.touchBackView.hidden = YES;
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    self.touchBackView.hidden = YES;
+}
 
 @end
